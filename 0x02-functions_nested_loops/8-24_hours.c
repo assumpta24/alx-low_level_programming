@@ -2,10 +2,10 @@
 
 /**
  * jack_bauer - Prints every minute of the day of jack bauer
- * Return: Always 0
+ *
  */
 
-int jack_bauer(void)
+void jack_bauer(void)
 {
 	int a, b, c, d;
 
@@ -27,6 +27,6 @@ int jack_bauer(void)
 	}
 	}
 	}
-	return (0);
+
 }
 
