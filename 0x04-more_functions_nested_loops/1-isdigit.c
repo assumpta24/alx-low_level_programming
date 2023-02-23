@@ -3,7 +3,7 @@
 /**
  * _isdigit - checks if a character is digit
  * @c: carrier variable
- * Written by:Desire
+ * Written by:Assumpta
  * Return: 1 if true, 0 if false
  */
 
