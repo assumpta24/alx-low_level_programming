@@ -3,7 +3,7 @@
 /**
  * main - demo program
  *
- * Return: 0 if successful else 1 on error
+ * Return: Always 0
  */
 int main(void)
 {
