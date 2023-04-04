@@ -23,9 +23,8 @@ size_t print_listint(const listint_t *h);
 
 	while (ptr != Null)
 	{
-		printf("%d", ptr→data);
-		ptr = ptr→link;
+		printf("%d", ptr->data);
+		ptr = ptr->link;
 	}
 	return (data);
-}
 }
