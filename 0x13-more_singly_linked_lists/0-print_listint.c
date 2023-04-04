@@ -10,16 +10,18 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	size_t nodes = 0;
+	size_t nbr = 0;
+
+	*h = Null;
 
 	if (h == Null)
 		printf("empty linked list:");
 
-	while (h->next != Null)
+	while (h != Null)
 	{
 		printf("%d\n", h->n);
 		h = h->next;
-		nodes++;
+		nbr++;
 	}
-	return (nodes);
+	return (nbr);
 }
