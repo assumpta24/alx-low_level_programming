@@ -10,16 +10,15 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	size_t num = 0;
+	size_t nodes = 0;
 
-	if (h == Null)
-		printf("linked list is empty:");
-	while (h != Null)
+
+	while (h)
 	{
 		printf("%d\n", h->n);
-		h = h->n;
-		num++;
+		h = h->next;
+		nodes++;
 	}
-	return (num);
+	return (nodes);
 }
 
