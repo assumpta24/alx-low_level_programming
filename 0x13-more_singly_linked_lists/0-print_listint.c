@@ -1,5 +1,5 @@
 #include "lists.h"
-#include <stdio.h>
+
 /**
  * print_listint - prints all the elements of a linked list
  * @h: linked list of type listint_t to print
@@ -8,7 +8,7 @@
  */
 size_t print_listint(const listint_t *h);
 {
-	size_t num = 0;
+
 
 	if (h == Null)
 		printf("linked list is empty");
@@ -18,8 +18,8 @@ size_t print_listint(const listint_t *h);
 
 	while (ptr != Null)
 	{
-		printf("%d", ptr→num);
+		printf("%d", ptr→data);
 		ptr = ptr→link;
 	}
-	return (num);
+	return (data);
 }
