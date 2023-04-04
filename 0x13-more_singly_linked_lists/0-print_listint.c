@@ -1,6 +1,4 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * print_listint - prints all the elements of a linked list
@@ -10,21 +8,13 @@
  *
  */
 
-size_t print_listint(const listint_t *h);
+size_t print_listint(const listint_t *h)
 {
-	size_t ptr;
 
-
-	if (h == Null)
-		printf("linked list is empty");
-	struct node *ptr = Null;
-
-	ptr = h;
-
-	while (ptr != Null)
+	while (p != Null)
 	{
-		printf("%d", ptr->data);
-		ptr = ptr->link;
+		printf("%d", p->data);
+		p = p->link;
 	}
 	return (data);
 }
