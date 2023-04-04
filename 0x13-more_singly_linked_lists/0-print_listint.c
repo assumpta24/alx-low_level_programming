@@ -12,12 +12,14 @@ size_t print_listint(const listint_t *h)
 {
 	size_t nodes = 0;
 
+	if (h == Null)
+		printf("empty linked list:");
+
 	while (h->next != Null)
 	{
 		printf("%d\n", h->n);
 		h = h->next;
 		nodes++;
 	}
-	printf("%d\n", h->n);
 	return (nodes);
 }
