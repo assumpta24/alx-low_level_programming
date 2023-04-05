@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<stdlib>
+#include<stdlib.h>
 #include "lists.h"
 
 /**
@@ -21,9 +21,9 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		{
 			if (total == index)
 			{
-				return (head);
 				head = head->next;
 				total++;
+				return (head);
 			}
 		}
 	}
