@@ -19,7 +19,7 @@ if (head)
 temp = malloc(sizeof(listint_t));
 
 if (temp == NULL)
-	return (0);
+	return (NULL);
 
 temp->n = n;
 temp->next = NULL;
@@ -38,5 +38,6 @@ while (*head == NULL)
 		return (ptr);
 	}
 }
+return (NULL);
 
 }
