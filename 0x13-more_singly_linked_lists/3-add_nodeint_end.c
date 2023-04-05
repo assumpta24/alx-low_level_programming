@@ -39,6 +39,6 @@ if (*head == NULL)
 		return (ptr);
 	}
 }
-return (NULL);
+return (*head);
 
 }
