@@ -10,10 +10,7 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	int nbr = 0;
-
-	if (h != Null)
-	{
+	size_t nbr = 0;
 
 	while (h)
 	{
@@ -21,6 +18,6 @@ size_t print_listint(const listint_t *h)
 	h = h->next;
 	nbr++;
 	}
-	}
+
 	return (nbr);
 }
