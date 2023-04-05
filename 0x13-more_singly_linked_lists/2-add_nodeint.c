@@ -14,20 +14,20 @@ listint_t *add_nodeint(listint_t **head, const int n)
 {
 	listint_t *ptr;
 
-	if (head != NULL)
+	if (*head != NULL)
 	{
-		printf("linked list is not empty!");
-
-	listint_t *head = malloc(sizeof(listint_t));
+		ptr = malloc(sizeof(listint_t));
 
 	while (ptr == NULL)
+
 		return (NULL);
+
 	ptr->n = n;
 	ptr->next = NULL;
 	ptr->next = *head;
 	*head = ptr;
 
-	return (ptr);
+	return (*head);
 	}
 	return (NULL);
 }
