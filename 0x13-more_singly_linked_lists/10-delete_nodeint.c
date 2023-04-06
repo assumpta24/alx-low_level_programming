@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - function that deletes the node at index  of a linked list
+ * delete_nodeint_at_index -  deletes the node at index  of a linked list
  * @head: head of linked list
  * @index: Index starts at 0
  *
@@ -11,30 +11,33 @@
  */
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	unsigned int total = 1;
+	unsigned int pos = 3;
 
-	listint_t *node1, *node2;
+	listint_t *prev, *current;
 
-	if (head == NULL)
-		return (-1);
-	else if (index == 0)
+	if (*head == NULL)
+		printf("linked list is empty!:");
+	else if (index == pos)
 	{
-		node2 = *head->next;
-		*head = node2;
-		return (1);
-		node2 = *head;
-	}
+		*head = current->next;
+		free(current);
 
-for (total = 0; total < index - 1; total++)
+		current = NULL;
+
+	}
+	else
 	{
-		while (node2->next == NULL)
-			return (-1);
-		node2 = nde2->next;
-	}
-		node1 = node2->next;
-		node2 = node1->next;
-		free(node2);
+		while (pos != 2)
+		{
+			prev = current;
+			current = current->next;
+			pos--;
+			return (1);
+		}
+		prev->next = current->next;
+		free(current);
+		current = NULL;
 
-		return (1);
 	}
-
+	return (-1);
+}
