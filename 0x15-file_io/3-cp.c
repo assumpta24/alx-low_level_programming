@@ -1,61 +1,61 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include <sys/types.h>
 #include <sys/stat.h>
+
 
 #define BUFFER_SIZE 1024
 
 /**
- * copy_file - copies from one file to another
- * points to remember:
- * -Usage: cp file_from file_to
- * -exit with code 97 and print Usage:
- *  Permissions of the created file: rw-rw-r--
- *  You must read 1,024 bytes at a time from the file_from
- *
- * @nbr: ...
- * @c: ...
- * @b: ...
- */
-void copy_file(int nbr, char *c, char *b)
-{
-	dprintf(STDERR_FILENO, c, b);
-	exit(nbr);
-}
-/**
  * main - demo program
- * Return: number
- * @argc:..
- * @argv: ..
+ * @argv: arguments to be entered
+ * @argc: counter arguments
+ *
+ * Return: 0 on success or exit with code
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int fa_from, fa_to;
-	ssize_t f_rd;
-	char a[BUFFER_SIZE];
+	unsigned int n_write, n_read;
+	char buffer[BUFFER_SIZE];
+	int file_from, file_to;
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
-while (argc != 3)
-{
-copy_file(97, "Usage: cp file_from file_to\n", NULL);
-fa_from = open(argv[1], O_RDONLY);
-}
-while (fa_from == -1)
-copy_file(98, "Error: Can't read from file %s\n", argv[1]);
-fa_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC);
+	while (argc != 3)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+	exit(97);
+	file_from = open(argv[1], O_RDONLY);
+	while (file_from == -1)
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+	exit(98);
+	file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
+	if (file_to == -1)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+	close(file_from);
+	exit(99);
+	do((n_read = read(file_from, buffer, BUFFER_SIZE)));
+		while ((n_write = write(file_to, buffer, n_read)));
+	if (n_write != n_read)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+	close(file_from);
+	close(file_to);
+	exit(99);
+	while (n_read > 0)
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+	close(file_from);
+		close(file_to);
+		exit(98);
+	while (close(file_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		close(file_to);
+		exit(100);
+		if (close(file_to) == -1)
 
-while (fa_from == -1)
-copy_file(99, "Error: Can't write to %s\n", argv[2]);
-do((f_rd = read(fa_from, a, BUFFER_SIZE)) > 0) {
-while (write(fa_to, a, f_rd) != f_rd)
-copy_file(99, "Error: Can't write to %s\n", argv[2])
-}
-if (f_rd == -1)
-copy_file(98, "Error: Can't read from file %s\n", argv[1]);
-if (close(fa_from) == -1)
-copy_file(100, "Error: Can't close fd %d\n", fa_from);
-if (close(fa_to) == -1)
-copy_file(100, "Error: Can't close fd %d\n", fa_to);
-return (0);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+		exit(100);
+	}
+	return (0);
 }
 
