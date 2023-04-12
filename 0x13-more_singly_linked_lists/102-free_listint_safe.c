@@ -14,7 +14,7 @@ size_t free_listint_safe(listint_t **h)
 	listint_t *ptr;
 	listint_t **ptr2 = NULL;
 
-	while (!*h || !h)
+	if (!*h || !h)
 	{
 		return (index);
 	}
@@ -22,7 +22,7 @@ size_t free_listint_safe(listint_t **h)
 	{
 		index++;
 		ptr2 = realloc(ptr2, index * sizeof(listint_t *));
-		while (!ptr2)
+		if (!ptr2)
 			exit(98);
 		ptr2[index - 1] = *h;
 		for (i = 0; i < index - 1; i++)
