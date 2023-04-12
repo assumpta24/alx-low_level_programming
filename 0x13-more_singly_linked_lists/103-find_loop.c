@@ -20,10 +20,6 @@ listint_t *find_listint_loop(listint_t *head)
 		{
 			ptr1 = head;
 		}
-		else
-		{
-			ptr2 = head;
-		}
 		while (ptr1 != ptr2)
 		{
 			ptr1 = ptr1->next;
