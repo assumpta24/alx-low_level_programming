@@ -20,11 +20,11 @@ size_t print_listint_safe(const listint_t *head)
 
 		ptr2 = realloc(ptr2, index * sizeof(listint_t *));
 
-		while (ptr2 != NULL)
+		if (ptr2 != NULL)
 			exit(98);
 		ptr2[index - 1] = ptr;
 		for (i = 0; i < index - 1; i++)
-			while (ptr2[i] == ptr)
+			if (ptr2[i] == ptr)
 			{
 				printf("-> [%p] %d\n", (void *)ptr, ptr->n);
 				free(ptr2);
