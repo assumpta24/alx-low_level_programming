@@ -19,5 +19,9 @@ void check_arguments(int argc);
 void open_files(char *argv[], int *file_from, int *file_to);
 void copy_file(int file_from, int file_to, char *argv[]);
 int main(int argc, char *argv[]);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+int main(int argc, char **argv);
 
 #endif
