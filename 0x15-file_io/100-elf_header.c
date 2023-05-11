@@ -2,86 +2,40 @@
 #include <elf.h>
 
 /**
- * print_magic - prints magic numbers
- * @e_ident: Elf header identity array
- *
- * Return: Nothing
- */
-void print_magic(unsigned char *e_ident)
-{
-	ssize_t x;
-
-	printf("  Magic:   ");
-	for (x = 0; x < EI_NIDENT; x++)
-		printf("%02x ", e_ident[x]);
-	printf("\n");
-}
-/**
- * print_class - prints the class of an ELF header
- * @e_ident: ELF header identity array
- *
- * Return: Nothing
- */
-void print_class(unsigned char *e_ident)
-{
-	 printf("  Class:                        ");
-	 printf("%s\n", e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
-}
-/**
- * print_data - prints the data encoding
- * @e_ident: ELF header identity array
- *
- * Return: Nothing
- */
-void print_data(unsigned char *e_ident)
-{
-	printf("  Data:                              ");
-	printf("%s\n", e_ident[EI_DATA] == ELFDATA2MSB ?
-			"2's complement, big endian" :
-			"2's complement, little endian");
-}
-/**
- * main - displays the information contained in Elf header
+ * main - check entry point of a program
  * @argc: number of arguments
  * @argv: arguments
  *
- * Return: Always 0;
+ * Return: Always 0
  */
 int main(int argc, char **argv)
 {
-	int fa;
-	ssize_t x;
-
-	Elf64_Ehdr header;
+	FILE *filename = fopen(argv[1], "r");
+	Elf64_Ehdr ehdr;
 
 	if (argc != 2)
-		dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
-	exit(98);
-
-	fa = open(argv[1], O_RDONLY);
-	if (fa == -1)
-		dprintf(STDERR_FILENO, "Error: Cannot read file %s\n", argv[1]);
-	exit(98);
-
-	x = read(fa, &header, sizeof(header));
-	if (x != sizeof(header))
-		dprintf(STDERR_FILENO, "Error: Cannot read file %s\n", argv[1]);
-	exit(98);
-
-
-	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
-			header.e_ident[EI_MAG1] != ELFMAG1 ||
-			header.e_ident[EI_MAG2] != ELFMAG2 ||
-			header.e_ident[EI_MAG3] != ELFMAG3)
-
-		dprintf(STDERR_FILENO, "Error: Not an ELF file - ");
-	dprintf(STDERR_FILENO, "magic number does not match\n");
-	exit(98);
+		fprintf(stderr, "Usage: %s <ELF file>\n", argv[0]);
+	exit(EXIT_FAILURE);
+	if (!filename)
+		fprintf(stderr, "Error: could not open file '%s'\n", argv[1]);
+	exit(EXIT_FAILURE);
+	if (fread(&ehdr, sizeof(ehdr), 1, filename) != 1)
+		fprintf(stderr, "Error: could not read ELF header\n");
+	fclose(filename);
+	exit(EXIT_FAILURE);
 
 	printf("ELF Header:\n");
-	print_magic(header.e_ident);
-	print_class(header.e_ident);
-	print_data(header.e_ident);
+	printf("  Magic:          %02x %02x %02x %02x %02x %02x %02x %02x\n",
+	ehdr.e_ident[EI_MAG0], ehdr.e_ident[EI_MAG1], ehdr.e_ident[EI_MAG2],
+	ehdr.e_ident[EI_MAG3], ehdr.e_ident[EI_MAG2], ehdr.e_ident[EI_MAG2],
+	ehdr.e_ident[EI_MAG2], ehdr.e_ident[EI_MAG2]);
+	printf("  Class:          %d\n", ehdr.e_ident[EI_CLASS]);
+	printf("  Data:           %d\n", ehdr.e_ident[EI_DATA]);
+	printf("  Version:        %d\n", ehdr.e_ident[EI_VERSION]);
+	printf("  OS/ABI:         %d\n", ehdr.e_ident[EI_OSABI]);
+	printf("  ABI Version:    %d\n", ehdr.e_ident[EI_ABIVERSION]);
+	printf("  Type:           %d\n", ehdr.e_type);
+	printf("  Entry point address:    0x%lx\n", ehdr.e_entry);
+	fclose(filename);
 	return (0);
 }
-
