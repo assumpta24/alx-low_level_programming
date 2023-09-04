@@ -1,5 +1,7 @@
 #include "main.h"
 #include <elf.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /**
  * main - check entry point of a program
